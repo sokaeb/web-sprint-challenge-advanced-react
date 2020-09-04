@@ -28,8 +28,22 @@ test("form shows success message on submit with form details", () => {
     const state = screen.getByLabelText(/state/i);
     const zip = screen.getByLabelText(/zip/i);
 
+    // input values
+    fireEvent.change(firstName, {target: { value: 'John'}}); 
+    fireEvent.change(lastName, {target: { value: 'Johnson'}}); 
+    fireEvent.change(address, {target: { value: '123 Main St'}}); 
+    fireEvent.change(city, {target: { value: 'Columbia'}});
+    fireEvent.change(state, {target: { value: 'SC'}});
+    fireEvent.change(zip, {target: { value: '29220'}});
+    
+    // grab the button element and click
+    const button = screen.getByTestId(/submitBtn/i);
+    fireEvent.click(button);
 
-
+    // assert that success message is in the document 
+    // const buyer = screen.getByText(/john/i);
+    const successMessage =  screen.getByTestId(/successMessage/i);
+    expect(successMessage).toBeInTheDocument();
 
 });
 
