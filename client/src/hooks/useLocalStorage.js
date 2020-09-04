@@ -7,7 +7,7 @@ import { useState } from 'react';
 // parsing bc json is a string then stringifying initialState so json can accept
 export const useLocalStorage = (key, initialState= "") => {
     const [storedValue, setStoredValue] = useState(() => {
-        if(JSON.parse(window.localStorage.getItem(key))){
+        if(JSON.parse(window.localStorage.getItem(key))) {
             return JSON.parse(window.localStorage.getItem(key));
         } else {
             window.localStorage.setItem(key, JSON.stringify(initialState));
@@ -17,7 +17,7 @@ export const useLocalStorage = (key, initialState= "") => {
 
     // this function takes a value, sets it as the storedValue then
     // stringifies it to be a key in localStor
-    const setValue = value => {
+    const setValue = (value) => {
         setStoredValue(value);
         window.localStorage.setItem(key, JSON.stringify(value));
     };
